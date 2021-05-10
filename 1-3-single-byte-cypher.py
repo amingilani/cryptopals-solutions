@@ -4,11 +4,17 @@ import binascii
 input = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 
 
-def xor_hex_and_char(input_hex, guess_character_decimal):
+def xor_hex_and_char(input_hex: str, guess_character_decimal: int) -> bytes:
     """XORs a hexadecimal numbers and a single character decimal number
 
-    returns a bytestring
+    Args:
+        input_hex (str): an input string in hexadecimal format
+        guess_character_decimal (int): a single decimal value betwen 0 and 255 inclusive
+
+    Returns:
+        bytes: a bytestring
     """
+
     input_decimal = int(input_hex, 16)  # to base10
 
     # convert the guess character into a repeating fixed length string
@@ -17,7 +23,7 @@ def xor_hex_and_char(input_hex, guess_character_decimal):
     guess_hex = guess_hex * (len(input) // len(guess_hex))  # repeat until
     guess_decimal = int(guess_hex, 16)  # to base10
 
-    result_decimal = guess_decimal ^ input_decimal
+    result_decimal = guess_decimal ^ input_decimal  # XOR
     result_hex = f"{result_decimal:x}".rjust(len(input), "0")
 
     return binascii.unhexlify(result_hex)
