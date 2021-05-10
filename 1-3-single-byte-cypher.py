@@ -13,8 +13,8 @@ def xor_hex_and_char(input_hex: str, guess_character_decimal: int) -> bytes:
 
     Returns:
         bytes: a bytestring
+        str: string
     """
-
     input_decimal = int(input_hex, 16)  # to base10
 
     # convert the guess character into a repeating fixed length string
